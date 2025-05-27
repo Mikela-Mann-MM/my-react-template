@@ -1,4 +1,4 @@
-import { Form, redirect } from 'react-router';
+import { Form, useNavigate } from 'react-router';
 import { z } from 'zod/v4';
 import { useState } from 'react';
 
@@ -10,8 +10,10 @@ import { useState } from 'react';
     })
 
     export default function Contact(){
-        const [errors, setErrors] = useStae({});
-    
+        const [errors, setErrors] = useState({});
+        const navigate = useNavigate(); // Hook to programmatically navigate
+
+
     const handleSubmit = (event) => {                   
         event.preventDefault(); // Prevent default form submission
         const formData = new FormData(event.target); // Get form data
@@ -21,18 +23,11 @@ import { useState } from 'react';
         const result = contactSchema.safeParse(data); // Validate the data using zod schema
         
         if (!result.success) {
-            const errors = z.threeifyErrors(result.error); // Prettify errors for better readability
+            const errors = z.treeifyError(result.error); // Prettify errors for better readability
             console.log(errors); // Log the errors to console
-            
-        setErrors(errors.properties)
-            console.log(errors.properties)// You can proceed with form submission or further processing here
-        } else 
-
+            setErrors(errors.properties)
+        } else {
         setErrors({})
-    }
-        
-        
-        //fetch... method post
 
         fetch('http://jsonplaceholder.typicode.com/users', {
             method: 'POST',
@@ -40,10 +35,14 @@ import { useState } from 'react';
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(result.data)
-        })
+        }).then(response => {
+            console.log("data was sent!")
+            if(response.ok) navigate('/'); //  evt Redirect til takkeside
 
-        redirect('/list'); // Redirect evt til takkeside
+    })
+       
     }
+}
 
     return (
         <>

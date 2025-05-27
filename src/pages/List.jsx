@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+/* import { useEffect, useState } from "react"; */
 import { Link } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 
 export default function List() {
-    const usrs = useLoaderData();
+    /* const users = useLoaderData(); */
 
    /*  const [usrs, setUsrs] = useState(null);
     const [isLoading, setIsLoading] = useState(true); */
