@@ -9,7 +9,7 @@ import { useState } from 'react';
         message: z.string().min(1, "Message is required")
     })
 
-    export default function Contact(){
+    async export default function Contact(){
         const [errors, setErrors] = useState({});
         const navigate = useNavigate(); // Hook to programmatically navigate
 
@@ -29,19 +29,28 @@ import { useState } from 'react';
         } else {
         setErrors({})
 
-        fetch('http://jsonplaceholder.typicode.com/users', {
+        const response = await fetch('http://jsonplaceholder.typicode.com/users', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(result.data)
-        }).then(response => {
+         })
+        /*.then(response => {
             console.log("data was sent!")
             if(response.ok) navigate('/'); //  evt Redirect til takkeside
 
-    })
-       
-    }
+}) */
+
+            if(!rosponese.ok) {
+                throw new Error("Could not save data");
+            }
+
+            console.log("Data was sent successfully!");
+            navigate('/'); // Redirect to home page or thank you page
+
+        }
+    
 }
 
     return (
