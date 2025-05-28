@@ -27,6 +27,7 @@ const router = createBrowserRouter([
             {
                 path: "contact",
                 element: <Contact />
+                action: handleSubmit,
             },
             {
                 path: "*",
