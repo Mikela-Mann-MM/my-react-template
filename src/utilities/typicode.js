@@ -1,6 +1,12 @@
 import queryClient from "./queryclient";
+import { redirect } from "react-router";
 
 export async function getUsers() {
+
+    const token = sessionStorage.getItem("token")
+    if (!token) redirect("/login");
+
+
     return queryClient.fetchQuery({
         queryKey: ["users"],
         queryFn: async function () {

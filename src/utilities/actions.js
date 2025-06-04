@@ -30,7 +30,7 @@ export async function handleSubmit({ request }) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(result.data)
-     }
+     })
 
         if(!responese.ok) {
             throw new Error("Could not save data")
@@ -39,5 +39,4 @@ export async function handleSubmit({ request }) {
         console.log("Data was sent successfully!");
         redirect('/'); // Redirect to home page or thank you page
 
-}
 }

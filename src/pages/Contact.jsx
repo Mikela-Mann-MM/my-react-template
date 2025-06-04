@@ -1,17 +1,7 @@
 import { Form, useActionData } from 'react-router';
 
-
-
-
-    /* const contactSchema = z.object({
-        name: z.string().min(2, "Name is required"), //optional() metode, hvis optional
-        email: z.email("Invalid email address"),
-        message: z.string().min(1, "Message is required")
-    }) */
-
  export default function Contact(){
         const errors = useActionData(); // Get action data from the router
-       
 
     return (
         <>
@@ -34,6 +24,6 @@ import { Form, useActionData } from 'react-router';
                 <p>{errors && errors?.message?.errors[0]}</p>
                 </div>
                 <button type="submit">Submit</button>
-</Form>
+        </Form>
         </>   
     )}
