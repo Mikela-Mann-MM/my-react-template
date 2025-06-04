@@ -5,10 +5,12 @@ import List from "./pages/List";
 import Detail from "./pages/Detail";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
-import handleSubmit from "./actions/handleSubmit";
+import { handleSubmit } from "./utilities/actions"; 
 import Loading from "./components/Loading";
-import ErrorBoundary from "./components/ErrorBoundary";
+import ErrorBoundary from "./Components/Error";
 import RequireAuth from "./Components/RequireAuth";
+import { getUser, getUsers } from "./utilities/typicode";
+import Login from "./pages/Login";
 
 
 const router = createBrowserRouter([

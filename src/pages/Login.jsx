@@ -17,11 +17,11 @@ export default function Login(){
         event.preventDefault();
         const formData = new FormData(event.target);
         const data = Object.fromEntries(formData);
-        //console.log(formData)
+         console.log(data)
 
         // valider her
 
-        const response = await fetch('http://dummyjson.com/auth/login', {
+        const response = await fetch('https://dummyjson.com/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

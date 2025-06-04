@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router';
-import LogoutButton from './Components/LogoutButton'
+import LogoutButton from './LogoutButton';
 import Navigation from './Navigation'
 
 export default function Header(){
