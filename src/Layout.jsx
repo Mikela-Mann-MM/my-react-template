@@ -1,4 +1,4 @@
-import Navigation from './Components/Navigation'
+import Header from './Components/Header'
 import { Outlet } from 'react-router'
 
 function App() {
@@ -6,15 +6,12 @@ function App() {
 
   return (
     <>
-      <header>
-        <Navigation />
-        <h1>My App</h1>
-      </header>
+      <Header />
       <main>
         <Outlet />
       </main>
       <footer>
-        <small>&copy; 2023 My App</small>
+        <small>&copy; 2025 My App</small>
       </footer>
     </>
   )

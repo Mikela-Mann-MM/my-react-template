@@ -1,26 +1,40 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router";
+/* import { useEffect, useState } from "react"; */
+import { Link, useLoaderData } from "react-router";
+import { useQuery } from "@tanstack/react-query";
+import { useAuth } from "../contexts/AuthContext";
 
-export default function Dogs() {
-    const [usrs, setUsrs] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
+export default function List() {
+     const usrs = useLoaderData(); 
+     const { token } = useAuth();
 
-    useEffect(() => {
+
+  console.log(token)
+
+   /*  const [usrs, setUsrs] = useState(null);
+    const [isLoading, setIsLoading] = useState(true); */
+
+    const { data, isLoading } = useQuery({
+        queryKey: ["users"],
+        queryFn: () => fetch("http://jsonplaceholder.typicode.com/users")
+        .then(response => response.json())
+    }); 
+
+    
+    /* useEffect(() => {
         fetch("http://jsonplaceholder.typicode.com/users")
             .then(response => response.json())
             .then(result => setUsrs(result))
             .finally(() => setIsLoading(false));
-    }, []);
+    }, []); */
 
-    return isLoading ? (
-        <p>Loading...</p>
-    ) : (
+    return isLoading ? ( <p>Loading...</p>) : (
+        
         <ul>
-            {usrs.map(user => (
+            {data.map(user => (
                 <li key={user.id}>
                     <Link to={`/list/${user.id}`}>{user.name}</Link>
             </li>
             ))}
-        </ul>
+        </ul> 
     );
 }
